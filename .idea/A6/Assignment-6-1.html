@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDA Line Drawing Algorithm</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>DDA Line Drawing Algorithm</h1>
+<p>Click to draw a line using DDA from (50, 50) to (400, 300).</p>
+
+<!-- Canvas element for drawing -->
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+    // Get canvas element and context
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    // Function to implement DDA Line Drawing Algorithm
+    function drawDDA(x1, y1, x2, y2) {
+        // Calculate the differences in coordinates
+        var dx = x2 - x1;
+        var dy = y2 - y1;
+
+        // Determine the number of steps to take
+        var steps = Math.max(Math.abs(dx), Math.abs(dy));
+
+        // Calculate the increments for x and y
+        var xIncrement = dx / steps;
+        var yIncrement = dy / steps;
+
+        // Initialize starting points
+        var x = x1;
+        var y = y1;
+
+        // Loop through each step and plot the points
+        for (var i = 0; i <= steps; i++) {
+            ctx.fillStyle = 'black'; // Color of the pixel
+            ctx.fillRect(Math.round(x), Math.round(y), 1, 1); // Draw the pixel
+
+            // Increment x and y for the next step
+            x += xIncrement;
+            y += yIncrement;
+        }
+    }
+
+    // Call DDA function to draw a line from (50, 50) to (400, 300)
+    drawDDA(50, 50, 400, 300);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bresenham's Line Drawing Algorithm</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bresenham's Line Drawing Algorithm</h1>
+<p>Click to draw a line from (100, 100) to (350, 450) using Bresenham's Algorithm.</p>
+
+<!-- Canvas element for drawing -->
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+    // Get canvas element and context
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    // Function to implement Bresenham's Line Drawing Algorithm
+    function drawBresenham(x1, y1, x2, y2) {
+        // Calculate the differences in coordinates
+        var dx = Math.abs(x2 - x1);
+        var dy = Math.abs(y2 - y1);
+
+        var sx = (x1 < x2) ? 1 : -1; // Step in x direction
+        var sy = (y1 < y2) ? 1 : -1; // Step in y direction
+
+        var err = dx - dy; // Initial error value
+
+        // Loop until the line is fully drawn
+        while (true) {
+            // Plot the point
+            ctx.fillStyle = 'black'; // Color of the pixel
+            ctx.fillRect(x1, y1, 1, 1); // Draw pixel at (x1, y1)
+
+            // If we reached the destination point, exit
+            if (x1 === x2 && y1 === y2) {
+                break;
+            }
+
+            // Calculate the error term and adjust the coordinates
+            var e2 = 2 * err;
+
+            if (e2 > -dy) { // Move in the x direction
+                err -= dy;
+                x1 += sx;
+            }
+
+            if (e2 < dx) { // Move in the y direction
+                err += dx;
+                y1 += sy;
+            }
+        }
+    }
+
+    // Call Bresenham's function to draw a line from (100, 100) to (350, 450)
+    drawBresenham(100, 100, 350, 450);
+
+</script>
+
+</body>
+</html>

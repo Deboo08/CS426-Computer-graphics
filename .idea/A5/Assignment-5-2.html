@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Rectangle and Ellipse</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Draw Rectangle and Ellipse</h1>
+
+<!-- Canvas element where graphics will be drawn -->
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+    // Get the canvas element and its 2D context
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    // 1. Draw a Rectangle
+    ctx.beginPath();        // Start a new path for the rectangle
+    ctx.rect(50, 50, 300, 150); // Rectangle (x, y, width, height)
+    ctx.fillStyle = 'orange'; // Fill color for the rectangle
+    ctx.fill();              // Fill the rectangle
+    ctx.lineWidth = 5;       // Line width for the border
+    ctx.strokeStyle = 'blue'; // Border color
+    ctx.stroke();            // Draw the border
+
+    // 2. Draw an Ellipse
+    ctx.beginPath();        // Start a new path for the ellipse
+    ctx.ellipse(250, 350, 150, 75, 0, 0, Math.PI * 2); // Ellipse (x, y, radiusX, radiusY, rotation, startAngle, endAngle)
+    ctx.fillStyle = 'green'; // Fill color for the ellipse
+    ctx.fill();              // Fill the ellipse
+    ctx.lineWidth = 3;       // Line width for the border
+    ctx.strokeStyle = 'red';  // Border color
+    ctx.stroke();            // Draw the border
+</script>
+
+</body>
+</html>
